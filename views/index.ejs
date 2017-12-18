@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>timestamp-microservice</title>
+	<title>request_header_parser_microservice</title>
 </head>
 <link rel="stylesheet" type="text/css" href="style.css">
 <body>
 
-  <h1>Timestamp microservice</h1>
+  <h1>Request Header Parser Microservice</h1>
 
-  <p>User stories: </p>
+  <p>Simply add "/whoami" at the end of this address in order to display an object containing:</p>
 
-  <ol>
-  	<li>I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016)</li>
-  	<li>If it does, it returns both the Unix timestamp and the natural language form of that date.</li>
-  	<li>If it does not contain a date or Unix timestamp, it returns null for those properties.</li>
-  </ol>
+  <ul>
+  	<li>Your IP address</li>
+  	<li>Your machine language</li>
+  	<li>You machine OS</li>
+  </ul>
   
   <h3>Example usage:</h3>
 
-  <code>https://timestamp-ms.herokuapp.com/December%2015,%202015</code>
-  <code> https://timestamp-ms.herokuapp.com/1450137600 </code>
+  <code>https://yofcc-request-header-parser-microservice.glitch.me/whoami</code>
 
   <h3>Example output:</h3>
 
-  <code>{ "unix": 1450137600, "natural": "December 15, 2015" }</code>
+  <code>{ "ipaddress": 1450137600, "language": "December 15, 2015", "software": "December 15, 2015" }</code>
 
 
 </body>

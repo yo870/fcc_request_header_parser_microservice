@@ -11,32 +11,25 @@ app.get("/", function (request, response) {
   response.render("index");
 });
 
-app.get("/:timestamp", function (request, response) {
-  var today = new Date(request.params.timestamp);
+app.get("/whoami", function (request, response) {
   
-  if (!isNaN(request.params.timestamp)) {
-    response.send(
-      {
-        "unix" : Number(request.params.timestamp),
-        "natural" : new Date(request.params.timestamp*1000).toDateString()
-      }    
-    )
-  } else if (!isNaN(today)) {
-    response.send(
-      {
-        "unix" : today.getTime() / 1000,
-        "natural" : request.params.timestamp
-      }    
-    )
-  } else {
-    response.send(
-      {
-        "unix" : null,
-        "natural" : null
-      }    
-    )
-  }
+var ip = request.headers['x-forwarded-for'].split(",")[0] || 
+     request.connection.remoteAddress || 
+     request.socket.remoteAddress ||
+     (request.connection.socket ? request.connection.socket.remoteAddress : null);  
+    
+var language = request.headers['accept-language'].split(",")[0];
   
+var software = request.headers['user-agent'].split("(")[1].split(")")[0];
+  
+  response.send(
+    {
+      "ipaddress": ip,
+      "language": language,
+      "software": software
+    }
+  );
+
 });
 
 // listen for requests :)
